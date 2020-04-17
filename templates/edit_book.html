@@ -1,0 +1,30 @@
+{{define "edit_book.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> 修改书籍信息 </title>
+</head>
+<body>
+    <h4>修改如下书籍</h4>
+    <!-- action="" 提交当前url数据 -->
+    <form action="/book/edit?id={{.ID}}" method="POST">
+        <div>
+            <label>书名：
+                <input type="text" name="title" value="{{.Title}}">
+            </label>
+        </div>
+        <div>
+            <label>价格：
+                <input type="number" name="price" value="{{.Price}}">
+            </label>
+        </div>
+        <div>
+            <input type="submit" name="提交">
+        </div>
+    </form>
+</body>
+</html>
+
+{{end}}
