@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"bookMgr/models"
 	"strconv"
+	"bookMgr/middleware"
 )
 
 // 显示书籍列表
@@ -144,9 +145,14 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
+	
+	gin.SetMode(gin.ReleaseMode)
 	// 定义访问的路由
 	r := gin.Default()
+	
+	//在这行 gin.Default()后新增
+	r.Use(middleware.LoggerToFile())
+	
 	r.LoadHTMLGlob("templates/*") // 加载模板页面
 	r.GET("/book/list", bookList)  // 查询所有书籍
 	r.GET("/book/new", bookNew)   // get 数据添加页面
